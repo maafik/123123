@@ -7,40 +7,58 @@
   <title>Заказать накидку на авто</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
+  
+  <!-- Performance hints -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://mc.yandex.ru">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Cardo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- Fonts - Optimized with font-display: swap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Inter:wght@400;500;600&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
 
+  <!-- Critical CSS - Preload -->
+  <link rel="preload" href="assets/css/main.css" as="style">
+  <link rel="preload" href="assets/vendor/bootstrap/css/bootstrap.min.css" as="style">
+  
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  </noscript>
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
+<!-- Yandex.Metrika counter - Deferred -->
+<script>
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
    m[i].l=1*new Date();
    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-   ym(103273664, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
+   window.addEventListener('load', function() {
+     setTimeout(function() {
+       ym(103273664, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+     }, 1000);
    });
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/103273664" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
@@ -109,6 +127,8 @@
     muted
     loop
     playsinline
+    preload="metadata"
+    loading="lazy"
     style="
       position: absolute;
       top: 50%;
@@ -129,7 +149,7 @@
     <li style="font-size: 18px; margin: 10px 0;">2. Укажите марку и модель автомобиля</li>
     <li style="font-size: 18px; margin: 10px 0;">3. Оформите заказ любым удобным способом</li>
   </ul>
-  <img src="images/STEPS_NEW_992x.webp" alt="Как заказать" style="max-width: 300px; width: 100%; border-radius: 10px; margin-top: 20px;" />
+  <img src="images/STEPS_NEW_992x.webp" alt="Как заказать" loading="lazy" style="max-width: 300px; width: 100%; border-radius: 10px; margin-top: 20px;" />
   <p style="font-size: 16px; color: #838383; margin-top: 20px;">
     ⏱ В течение 30 минут мы свяжемся с вами для подтверждения заказа и уточнения деталей.<br>
     📦 После согласования — отправим накидки в ваш город!
@@ -173,23 +193,23 @@
 <div class="gallery-items" id="frontItems">
   <!-- Передние накидки -->
   <div class="gallery-item" onclick="openOrder('assets/img/gallery-5/gallery-1.webp', 'Накидка на передние сиденья, льняная — чёрный/синий, 2 шт', 1999)">
-    <img src="assets/img/gallery-5/gallery-1.webp" alt="Накидка чёрный/синий">
+    <img src="assets/img/gallery-5/gallery-1.webp" alt="Накидка чёрный/синий" loading="lazy">
     <button>Заказать</button>
   </div>
   <div class="gallery-item" onclick="openOrder('assets/img/gallery-5/gallery-2.webp', 'Накидка на передние сиденья, льняная — чёрный/красный, 2 шт', 1999)">
-    <img src="assets/img/gallery-5/gallery-2.webp" alt="Накидка чёрный/красный">
+    <img src="assets/img/gallery-5/gallery-2.webp" alt="Накидка чёрный/красный" loading="lazy">
     <button>Заказать</button>
   </div>
   <div class="gallery-item" onclick="openOrder('assets/img/gallery-5/gallery-3.webp', 'Накидка на передние сиденья, льняная — чёрный, 2 шт', 1999)">
-    <img src="assets/img/gallery-5/gallery-3.webp" alt="Накидка чёрный">
+    <img src="assets/img/gallery-5/gallery-3.webp" alt="Накидка чёрный" loading="lazy">
     <button>Заказать</button>
   </div>
   <div class="gallery-item" onclick="openOrder('assets/img/gallery-5/gallery-4.webp', 'Накидка на передние сиденья, льняная — серая, 2 шт', 1999)">
-    <img src="assets/img/gallery-5/gallery-4.webp" alt="Накидка серая">
+    <img src="assets/img/gallery-5/gallery-4.webp" alt="Накидка серая" loading="lazy">
     <button>Заказать</button>
   </div>
   <div class="gallery-item" onclick="openOrder('assets/img/gallery-5/gallery-5.webp', 'Накидка на передние сиденья, льняная — бежевая, 2 шт', 1999)">
-    <img src="assets/img/gallery-5/gallery-5.webp" alt="Накидка бежевая">
+    <img src="assets/img/gallery-5/gallery-5.webp" alt="Накидка бежевая" loading="lazy">
     <button>Заказать</button>
   </div>
 </div>
@@ -233,7 +253,7 @@
   <div class="order-content" onclick="event.stopPropagation()">
     <div class="close-btn" onclick="closeOrder(event)">✖</div>
     <div class="order-image">
-      <img id="popupImage" src="" alt="">
+      <img id="popupImage" src="" alt="" loading="lazy">
     </div>
     <div class="order-details">
       <h3 id="popupTitle">Название товара</h3>
@@ -328,19 +348,19 @@
     <h2>Отзывы наших клиентов</h2>
     <div class="reviews-wrapper">
       <div class="review-item">
-        <img src="assets/img/gallery-5/pavlovsk.jpg" alt="User 1">
+        <img src="assets/img/gallery-5/pavlovsk.jpg" alt="User 1" loading="lazy">
       </div>
       <div class="review-item">
-        <img src="assets/img/gallery-5/pavlovsk1.jpg" alt="User 2">
+        <img src="assets/img/gallery-5/pavlovsk1.jpg" alt="User 2" loading="lazy">
       </div>
       <div class="review-item">
-        <img src="assets/img/gallery-5/pavlovsk2.jpg" alt="User 3">
+        <img src="assets/img/gallery-5/pavlovsk2.jpg" alt="User 3" loading="lazy">
       </div>
       <div class="review-item">
-        <img src="assets/img/gallery-5/pavlovsk3.jpg" alt="User 4">
+        <img src="assets/img/gallery-5/pavlovsk3.jpg" alt="User 4" loading="lazy">
       </div>
             <div class="review-item">
-        <img src="assets/img/gallery-5/pavlovsk4.jpg" alt="User 4">
+        <img src="assets/img/gallery-5/pavlovsk4.jpg" alt="User 4" loading="lazy">
       </div>
 
 
@@ -378,15 +398,15 @@
     <div class="line"></div>
   </div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <!-- Vendor JS Files - Deferred for faster page load -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="assets/vendor/php-email-form/validate.js" defer></script>
+  <script src="assets/vendor/aos/aos.js" defer></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js" defer></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js" defer></script>
 
   <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js" defer></script>
 
 </body>
 
