@@ -1109,7 +1109,7 @@ textarea:focus {
 
 #preloader.loaded:before,
 #preloader.loaded:after {
-  animation: preloaderfinish 300ms ease-in-out 500ms forwards;
+  animation: preloaderfinish 200ms ease-in-out 100ms forwards;
 }
 
 @keyframes lineincrease {

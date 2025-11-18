@@ -59,18 +59,51 @@
   });
 
   /**
-   * Preloader
+   * Preloader - Optimized for mobile (fast hide)
    */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
-    window.addEventListener('load', () => {
+    let preloaderHidden = false;
+    
+    const hidePreloader = () => {
+      if (preloaderHidden) return;
+      preloaderHidden = true;
+      preloader.classList.add('loaded');
+      // Remove from DOM after animation
       setTimeout(() => {
-        preloader.classList.add('loaded');
-      }, 1000);
-      setTimeout(() => {
-        preloader.remove();
-      }, 2000);
-    });
+        if (preloader.parentNode) {
+          preloader.remove();
+        }
+      }, 300);
+    };
+
+    // Detect mobile devices
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // On mobile: hide immediately after DOM is ready (don't wait for images/videos)
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          // Use requestAnimationFrame for smooth transition
+          requestAnimationFrame(() => {
+            setTimeout(hidePreloader, 150);
+          });
+        });
+      } else {
+        // DOM already loaded - hide immediately
+        requestAnimationFrame(() => {
+          setTimeout(hidePreloader, 50);
+        });
+      }
+    } else {
+      // On desktop: wait for full page load but with minimal delay
+      window.addEventListener('load', () => {
+        setTimeout(hidePreloader, 200);
+      });
+    }
+
+    // Fallback: hide after max 1.5 seconds regardless (reduced from 2s)
+    setTimeout(hidePreloader, 1500);
   }
 
   /**
