@@ -59,36 +59,18 @@
   });
 
   /**
-   * Preloader - Ultra fast hide (no delays)
+   * Preloader
    */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
-    let preloaderHidden = false;
-    
-    const hidePreloader = () => {
-      if (preloaderHidden) return;
-      preloaderHidden = true;
-      preloader.classList.add('loaded');
-      // Remove from DOM quickly after animation
+    window.addEventListener('load', () => {
       setTimeout(() => {
-        if (preloader.parentNode) {
-          preloader.remove();
-        }
-      }, 200);
-    };
-
-    // Hide immediately - don't wait for anything
-    // Use requestAnimationFrame to ensure smooth transition
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        // Hide after just 100ms on mobile, 200ms on desktop
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        setTimeout(hidePreloader, isMobile ? 100 : 200);
-      });
+        preloader.classList.add('loaded');
+      }, 1000);
+      setTimeout(() => {
+        preloader.remove();
+      }, 2000);
     });
-
-    // Fallback: hide after max 800ms regardless (very fast)
-    setTimeout(hidePreloader, 800);
   }
 
   /**
