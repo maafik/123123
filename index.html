@@ -398,6 +398,30 @@
     <div class="line"></div>
   </div>
 
+  <!-- Fast preloader hide script (inline for immediate execution) -->
+  <script>
+    (function() {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        // Hide preloader very quickly - don't wait for anything
+        const hidePreloader = () => {
+          preloader.classList.add('loaded');
+          setTimeout(() => preloader.remove(), 200);
+        };
+        
+        // Hide immediately on mobile, slightly delay on desktop
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const delay = isMobile ? 50 : 150;
+        
+        // Use setTimeout with minimal delay
+        setTimeout(hidePreloader, delay);
+        
+        // Fallback: hide after max 600ms
+        setTimeout(hidePreloader, 600);
+      }
+    })();
+  </script>
+
   <!-- Vendor JS Files - Deferred for faster page load -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/vendor/php-email-form/validate.js" defer></script>

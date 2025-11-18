@@ -59,7 +59,7 @@
   });
 
   /**
-   * Preloader - Optimized for mobile (fast hide)
+   * Preloader - Ultra fast hide (no delays)
    */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
@@ -69,41 +69,26 @@
       if (preloaderHidden) return;
       preloaderHidden = true;
       preloader.classList.add('loaded');
-      // Remove from DOM after animation
+      // Remove from DOM quickly after animation
       setTimeout(() => {
         if (preloader.parentNode) {
           preloader.remove();
         }
-      }, 300);
+      }, 200);
     };
 
-    // Detect mobile devices
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-      // On mobile: hide immediately after DOM is ready (don't wait for images/videos)
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-          // Use requestAnimationFrame for smooth transition
-          requestAnimationFrame(() => {
-            setTimeout(hidePreloader, 150);
-          });
-        });
-      } else {
-        // DOM already loaded - hide immediately
-        requestAnimationFrame(() => {
-          setTimeout(hidePreloader, 50);
-        });
-      }
-    } else {
-      // On desktop: wait for full page load but with minimal delay
-      window.addEventListener('load', () => {
-        setTimeout(hidePreloader, 200);
+    // Hide immediately - don't wait for anything
+    // Use requestAnimationFrame to ensure smooth transition
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        // Hide after just 100ms on mobile, 200ms on desktop
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        setTimeout(hidePreloader, isMobile ? 100 : 200);
       });
-    }
+    });
 
-    // Fallback: hide after max 1.5 seconds regardless (reduced from 2s)
-    setTimeout(hidePreloader, 1500);
+    // Fallback: hide after max 800ms regardless (very fast)
+    setTimeout(hidePreloader, 800);
   }
 
   /**

@@ -1082,7 +1082,7 @@ textarea:focus {
   width: 1px;
   height: 0%;
   transform: translateY(-50%);
-  animation: lineincrease 1000ms ease-in-out 0s forwards;
+  animation: lineincrease 500ms ease-in-out 0s forwards;
 }
 
 #preloader .line:after {
@@ -1094,8 +1094,8 @@ textarea:focus {
   width: 1px;
   height: 100%;
   transform: translateY(-100%);
-  animation: linemove 1200ms linear 0s infinite;
-  animation-delay: 2000ms;
+  animation: linemove 800ms linear 0s infinite;
+  animation-delay: 300ms;
 }
 
 #preloader.loaded .line {
@@ -1109,7 +1109,7 @@ textarea:focus {
 
 #preloader.loaded:before,
 #preloader.loaded:after {
-  animation: preloaderfinish 200ms ease-in-out 100ms forwards;
+  animation: preloaderfinish 150ms ease-in-out 0ms forwards;
 }
 
 @keyframes lineincrease {
