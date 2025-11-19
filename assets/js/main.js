@@ -123,41 +123,20 @@
 
  
 
-// Функция для открытия попапа с товаром
-function openOrder(image, title, price) {
-  selectedItem = { image, title, price };
-
-  document.getElementById('orderPopup').style.display = 'flex';
-  document.getElementById('popupImage').src = image;
-  document.getElementById('popupTitle').innerText = title;
-
-  // Устанавливаем начальную цену товара
-  totalPrice = price; // Сбрасываем цену товара, передаем новую цену
-
-  // Обновляем цену в попапе
-  updatePrice();
-
-  // Обновляем ссылку на WhatsApp с параметрами
-  const phoneNumber = '79517623467';  // Номер телефона
-  const message = encodeURIComponent(`Хочу заказать ${title} за ${totalPrice} ₽`);
-  document.getElementById('whatsappLink').href = `https://wa.me/${phoneNumber}?text=${message}`;
-
-  // Чтобы форма не закрылась, если кликнуть по ней
-  document.getElementById('orderPopup').addEventListener('click', closeOrder);
-  document.getElementById('orderPopup').addEventListener('click', function (event) {
-    if (event.target === document.getElementById('orderPopup')) {
-      closeOrder();
-    }
-  });
-}
-
-// Функция для обновления цены при изменении состояния чекбокса
-let selectedItem = {}; 
+let selectedItem = {};
 let totalPrice = 0;
+let popupHistoryActive = false;
+let popupScrollPosition = 0;
 
 function openOrder(image, title, price) {
   // сохраняем выбранный товар
   selectedItem = { image, title, price: parseInt(price, 10) };
+
+  popupScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
+  if (!popupHistoryActive) {
+    window.history.pushState({ popup: 'order' }, '');
+    popupHistoryActive = true;
+  }
 
   // показываем попап
   const popup = document.getElementById('orderPopup');
@@ -244,22 +223,33 @@ function updateConsentStatus() {
 
 // Закрытие попапа
 function closeOrder(event) {
-  document.getElementById('orderPopup').style.display = 'none';
+  if (popupHistoryActive) {
+    window.history.back();
+    return;
+  }
+  hideOrderPopup();
 }
 
-
-  // Обработчик кнопки "Назад" в браузере
-  window.onpopstate = function () {
-    closeOrder();
-  };
-
-  // Для поддержки кнопки "Назад", добавляем историю в стэк
-  function handleHistory() {
-    window.history.pushState({}, '');
+function hideOrderPopup(scrollTarget) {
+  const popup = document.getElementById('orderPopup');
+  if (!popup) return;
+  popup.style.display = 'none';
+  if (typeof scrollTarget === 'number') {
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: scrollTarget,
+        behavior: 'auto'
+      });
+    });
   }
+}
 
-  // Вызовите эту функцию при открытии попапа
-  window.addEventListener('load', handleHistory);
+window.addEventListener('popstate', () => {
+  if (popupHistoryActive) {
+    popupHistoryActive = false;
+    hideOrderPopup(popupScrollPosition);
+  }
+});
 
   function toggleItems(type) {
     const frontItems = document.getElementById('frontItems');
