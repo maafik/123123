@@ -180,7 +180,10 @@ function updatePrice() {
 
   document.getElementById('popupPrice').innerText = `Цена: ${totalPrice} ₽`;
 
-  const message = encodeURIComponent(`Хочу заказать ${selectedItem.title} за ${totalPrice} ₽`);
+  const seatsLabel = rearSeatCheckbox.checked
+    ? ' (комплект на передние и задние сиденья)'
+    : ' (передние сиденья)';
+  const message = encodeURIComponent(`Хочу заказать ${selectedItem.title}${seatsLabel} за ${totalPrice} ₽`);
   document.getElementById('whatsappLink').href = `https://wa.me/79517623467?text=${message}`;
   document.getElementById('telegramLink').href = `https://t.me/IrisArts1?text=${message}`;
 }
