@@ -351,7 +351,7 @@
 
 /* Smooth scroll */
 :root {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /*--------------------------------------------------------------
@@ -2301,17 +2301,6 @@ section,
     margin-bottom: 20px;
   }
 
-  .whatsapp-btn {
-    background: #25D366;
-    color: #fff;
-    text-decoration: none;
-    padding: 12px 20px;
-    display: inline-block;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 4px;
-  }
-
   .close-btn {
     position: absolute;
     top: 10px;
@@ -2348,12 +2337,6 @@ section,
     .order-image img {
       max-height: 45vh;
       object-fit: cover;
-    }
-
-    .whatsapp-btn {
-      width: 100%;
-      text-align: center;
-      padding: 14px;
     }
 
     .close-btn {

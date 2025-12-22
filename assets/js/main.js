@@ -91,7 +91,11 @@
       mirror: false
     });
   }
-  window.addEventListener('load', aosInit);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', aosInit);
+  } else {
+    aosInit();
+  }
 
   /**
    * Initiate glightbox
@@ -117,7 +121,11 @@
     });
   }
 
-  window.addEventListener("load", initSwiper);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwiper);
+  } else {
+    initSwiper();
+  }
 
 })();
 
@@ -157,7 +165,7 @@ function openOrder(image, title, price) {
   // ставим базовую цену для товара
   totalPrice = selectedItem.price;
 
-  // обновляем цену и WhatsApp ссылку
+  // обновляем цену и ссылку
   updatePrice();
   updateConsentStatus();
 
@@ -184,7 +192,6 @@ function updatePrice() {
     ? ' (комплект на передние и задние сиденья)'
     : ' (передние сиденья)';
   const message = encodeURIComponent(`Хочу заказать ${selectedItem.title}${seatsLabel} за ${totalPrice} ₽`);
-  document.getElementById('whatsappLink').href = `https://wa.me/79517623467?text=${message}`;
   document.getElementById('telegramLink').href = `https://t.me/IrisArts1?text=${message}`;
 }
 
