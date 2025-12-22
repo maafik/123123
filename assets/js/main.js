@@ -192,7 +192,7 @@ function updatePrice() {
     ? ' (комплект на передние и задние сиденья)'
     : ' (передние сиденья)';
   const message = encodeURIComponent(`Хочу заказать ${selectedItem.title}${seatsLabel} за ${totalPrice} ₽`);
-  document.getElementById('telegramLink').href = `https://t.me/IrisArts1?text=${message}`;
+  document.getElementById('telegramLink').href = `https://t.me/Irinasketchs?text=${message}`;
 }
 
 function openPolicyPopup(event) {
